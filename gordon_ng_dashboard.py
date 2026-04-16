@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
 from sklearn.linear_model import LinearRegression
 import matplotlib.pyplot as plt
 
@@ -64,6 +63,18 @@ ax.set_title("COP Prediction Accuracy")
 ax.grid(True)
 ax.legend()
 st.pyplot(fig)
+plt.close(fig)
+
+# 📊 Raw Data Table
+st.subheader("📋 Input Data & Model Results")
+st.dataframe(df.style.format({
+    'Q_ev': '{:.0f}',
+    'T_ev_in': '{:.1f}',
+    'T_con_out': '{:.1f}',
+    'P_comp': '{:.0f}',
+    'COP': '{:.4f}',
+    'COP_pred': '{:.4f}',
+}), use_container_width=True)
 
 # 💾 Optional CSV Export
 st.download_button(
