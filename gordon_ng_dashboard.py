@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
 from sklearn.linear_model import LinearRegression
 import matplotlib.pyplot as plt
 
@@ -64,6 +63,18 @@ ax.set_title("COP Prediction Accuracy")
 ax.grid(True)
 ax.legend()
 st.pyplot(fig)
+plt.close(fig)
+
+# 📋 Data Table
+st.subheader("📋 Model Data")
+st.dataframe(df.rename(columns={
+    'Q_ev': 'Cooling Load (kW)',
+    'T_ev_in': 'Evap Inlet Temp (°C)',
+    'T_con_out': 'Cond Outlet Temp (°C)',
+    'P_comp': 'Compressor Power (kW)',
+    'COP': 'Actual COP',
+    'COP_pred': 'Predicted COP'
+}), use_container_width=True)
 
 # 💾 Optional CSV Export
 st.download_button(
